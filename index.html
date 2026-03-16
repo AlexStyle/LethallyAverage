@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LethallyAverage | Free Home Security Knowledge</title>
+    <meta name="description" content="Real home security education — no paywalls, no certificates, no gatekeeping. IoT, multi-family homes, 2026 threats. Built in the Bronx. Free forever." />
+    <meta property="og:title" content="LethallyAverage | Free Home Security Knowledge" />
+    <meta property="og:description" content="Real home security education — no paywalls, no certificates, no gatekeeping. Built in the Bronx. Free forever." />
+    <meta property="og:type" content="website" />
+    <meta name="keywords" content="free home security, IoT security guide, multi-family home security, 2026 cyber threats, home network setup, beginner security" />
+    <!-- GitHub Pages SPA redirect handler -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) {
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

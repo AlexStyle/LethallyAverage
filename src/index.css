@@ -1,0 +1,98 @@
+@import "tailwindcss";
+@import "@fontsource/bebas-neue/400.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+@import "@fontsource/ibm-plex-mono/700.css";
+@import "@fontsource/space-mono/400.css";
+@import "@fontsource/space-mono/700.css";
+
+@theme {
+  --color-la-black: #0A0A0A;
+  --color-la-red: #E8001D;
+  --color-la-gold: #F5C518;
+  --color-la-white: #F0F0F0;
+  --color-la-gray: #1A1A1A;
+  --color-la-muted: #888888;
+
+  --font-display: "Bebas Neue", sans-serif;
+  --font-body: "IBM Plex Mono", monospace;
+  --font-accent: "Space Mono", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0A0A0A;
+  color: #F0F0F0;
+  font-family: "IBM Plex Mono", monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes glitch-color {
+  0% { text-shadow: 2px 0 #E8001D, -2px 0 #00e8ff; }
+  25% { text-shadow: -2px 0 #E8001D, 2px 0 #00e8ff; }
+  50% { text-shadow: 2px 2px #E8001D, -2px -2px #00e8ff; }
+  75% { text-shadow: -2px 2px #E8001D, 2px -2px #00e8ff; }
+  100% { text-shadow: 2px 0 #E8001D, -2px 0 #00e8ff; }
+}
+
+.glitch-hover {
+  position: relative;
+}
+.glitch-hover:hover {
+  animation: glitch 0.3s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+::selection {
+  background-color: #E8001D;
+  color: #F0F0F0;
+}
