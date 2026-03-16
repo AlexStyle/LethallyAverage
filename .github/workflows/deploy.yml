@@ -26,8 +26,8 @@ jobs:
         with:
           node-version: 22
 
-      - name: Install dependencies
-        run: rm -f package-lock.json && npm install
+      - name: Clean install
+        run: rm -f package-lock.json && npm install --legacy-peer-deps
 
       - name: Build
         run: npx vite build
