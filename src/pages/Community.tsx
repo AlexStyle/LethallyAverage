@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import PageWrapper from '../components/Layout/PageWrapper';
@@ -237,16 +237,7 @@ const months = [
 ];
 
 const Community = () => {
-  const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
   const [activeMonth, setActiveMonth] = useState(0);
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    if (email.trim()) {
-      setSubmitted(true);
-    }
-  };
 
   const currentMonth = months[activeMonth];
 
@@ -394,46 +385,22 @@ const Community = () => {
         </Link>
       </motion.div>
 
-      {/* Waitlist form */}
+      {/* Waitlist — coming soon placeholder */}
       <motion.div {...fadeUp} className="max-w-md mx-auto text-center mb-16">
         <h2 className="font-display text-2xl text-la-white mb-2">
           GET NOTIFIED
         </h2>
         <p className="font-body text-xs text-la-muted mb-6">
-          Drop your email. We'll let you know when sessions start.
+          Waitlist signup coming soon. Follow us for updates.
         </p>
-
-        {submitted ? (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="p-4 bg-la-gray/30 rounded-xl border border-la-red"
-          >
-            <p className="font-display text-lg text-la-red mb-1">
-              YOU'RE ON THE LIST.
-            </p>
-            <p className="font-body text-xs text-la-muted">
-              We'll hit you up when it's go time.
-            </p>
-          </motion.div>
-        ) : (
-          <form onSubmit={handleSubmit} className="flex gap-3">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="your@email.com"
-              required
-              className="flex-1 px-4 py-3 bg-la-gray border border-la-gray rounded-lg font-body text-sm text-la-white placeholder:text-la-muted focus:outline-none focus:border-la-red transition-colors duration-200"
-            />
-            <button
-              type="submit"
-              className="px-6 py-3 bg-la-red text-white font-accent text-xs uppercase tracking-widest rounded-lg hover:bg-la-red/80 transition-colors duration-200 flex-shrink-0"
-            >
-              JOIN
-            </button>
-          </form>
-        )}
+        <div className="p-4 bg-la-gray/30 rounded-xl border border-la-gray">
+          <p className="font-display text-lg text-la-gold mb-1">
+            WAITLIST OPENING SOON
+          </p>
+          <p className="font-body text-xs text-la-muted">
+            We're setting things up. Check back shortly.
+          </p>
+        </div>
       </motion.div>
 
       <div className="h-8" />

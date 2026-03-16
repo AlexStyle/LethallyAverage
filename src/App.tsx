@@ -12,6 +12,8 @@ import Threats2026 from './pages/Threats2026'
 import About from './pages/About'
 import Community from './pages/Community'
 import CareerPaths from './pages/CareerPaths'
+import Privacy from './pages/Privacy'
+import Terms from './pages/Terms'
 import { useEffect } from 'react'
 
 function ScrollToTop() {
@@ -42,6 +44,8 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/community" element={<Community />} />
             <Route path="/career-paths" element={<CareerPaths />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
           </Routes>
         </AnimatePresence>
       </main>

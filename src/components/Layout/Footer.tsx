@@ -8,7 +8,7 @@ const Footer = () => {
           "You don't need to be an expert to protect yourself online. You just need to start."
         </p>
 
-        <div className="flex gap-6">
+        <div className="flex flex-wrap justify-center gap-6">
           <Link to="/" className="font-body text-xs text-la-muted hover:text-la-white transition-colors">
             Home
           </Link>
@@ -17,6 +17,19 @@ const Footer = () => {
           </Link>
           <Link to="/community" className="font-body text-xs text-la-muted hover:text-la-white transition-colors">
             Community
+          </Link>
+          <Link to="/career-paths" className="font-body text-xs text-la-muted hover:text-la-white transition-colors">
+            Career Paths
+          </Link>
+        </div>
+
+        <div className="flex gap-4">
+          <Link to="/privacy" className="font-body text-[10px] text-la-muted/60 hover:text-la-white transition-colors">
+            Privacy Policy
+          </Link>
+          <span className="text-la-muted/30">|</span>
+          <Link to="/terms" className="font-body text-[10px] text-la-muted/60 hover:text-la-white transition-colors">
+            Terms of Service
           </Link>
         </div>
 

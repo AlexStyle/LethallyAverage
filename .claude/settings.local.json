@@ -45,7 +45,19 @@
       "Bash(gh auth:*)",
       "Bash(npx vite:*)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git branch:*)",
+      "Bash(git commit:*)",
+      "Bash(git remote:*)",
+      "Bash(git push:*)",
+      "Bash(curl -sI https://lethallyaverage.com)",
+      "Bash(curl -s \"https://api.github.com/repos/AlexStyle/LethallyAverage/actions/runs\")",
+      "Bash(curl -s \"https://api.github.com/repos/AlexStyle/LethallyAverage/actions/runs/23126267109/jobs\")",
+      "Bash(python3 -c \":*)",
+      "Bash(curl -s \"https://api.github.com/repos/AlexStyle/LethallyAverage/actions/runs?per_page=1\")",
+      "Bash(curl -s \"https://api.github.com/repos/AlexStyle/LethallyAverage/actions/runs/23126648105/jobs\")",
+      "Bash(curl -sH \"Accept: application/vnd.github+json\" \"https://api.github.com/repos/AlexStyle/LethallyAverage/actions/runs/23126648105/jobs\")",
+      "Bash(curl -sH \"Accept: application/vnd.github+json\" \"https://api.github.com/repos/AlexStyle/LethallyAverage/actions/jobs/67171084099/logs\")"
     ]
   }
 }
