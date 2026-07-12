@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Double Agent | LethallyAverage CyberComic</title>
+  <meta name="description" content="An incident response manager at a top cybersecurity firm was secretly a BlackCat ransomware affiliate — hacking the companies he was paid to protect.">
+  <meta property="og:title" content="The Double Agent | LethallyAverage CyberComic">
+  <meta property="og:description" content="Trust but verify — even cybersecurity professionals can be threat actors.">
+  <meta property="og:type" content="article">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Permanent+Marker&family=Comic+Neue:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0d0d1a;
+      --paper: #f5f0e8;
+      --red: #e23636;
+      --red-dark: #a01c1c;
+      --yellow: #f5c518;
+      --yellow-dim: #c49a0a;
+      --blue: #1a3a5c;
+      --blue-light: #2a5a8c;
+      --teal: #00d4aa;
+      --teal-dim: #009977;
+      --gray: #8a8a9a;
+      --panel-bg: #12121f;
+      --gutter: 12px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--ink);
+      color: #e0ddd5;
+      font-family: 'Comic Neue', cursive, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO HEADER ─────────────────────────── */
+    .hero {
+      position: relative;
+      padding: 3rem 1.5rem 2rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(255,255,255,0.015) 2px,
+          rgba(255,255,255,0.015) 4px
+        );
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 6px;
+      background: repeating-linear-gradient(90deg, var(--red) 0, var(--red) 20px, var(--yellow) 20px, var(--yellow) 40px);
+    }
+
+    .brand {
+      font-family: 'Permanent Marker', cursive;
+      font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+      color: var(--red);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .brand span { color: var(--teal); }
+
+    .comic-title {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      color: var(--yellow);
+      text-shadow:
+        4px 4px 0 var(--red),
+        8px 8px 0 rgba(0,0,0,0.5);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .issue-info {
+      font-size: 0.9rem;
+      color: var(--gray);
+      letter-spacing: 1px;
+    }
+
+    .issue-info strong { color: var(--teal); }
+
+    /* ── HOOK ─────────────────────────────────── */
+    .hook {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .hook-box {
+      position: relative;
+      padding: 1.5rem 2rem;
+      background: var(--blue);
+      border-left: 5px solid var(--yellow);
+      border-radius: 0 12px 12px 0;
+      font-size: 1.15rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: #d0cdc5;
+    }
+
+    .hook-box::before {
+      content: '\201C';
+      position: absolute;
+      top: -10px; left: 12px;
+      font-family: 'Bangers', cursive;
+      font-size: 4rem;
+      color: var(--yellow);
+      opacity: 0.4;
+      line-height: 1;
+    }
+
+    /* ── PANELS ───────────────────────────────── */
+    .panels {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem 2rem;
+      display: grid;
+      gap: var(--gutter);
+    }
+
+    .panel {
+      position: relative;
+      background: var(--panel-bg);
+      border: 3px solid #333;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow:
+        6px 6px 0 rgba(0,0,0,0.5),
+        inset 0 0 40px rgba(0,0,0,0.3);
+      opacity: 0;
+      transform: translateY(30px) rotate(-0.5deg);
+      animation: panelIn 0.6s ease-out forwards;
+    }
+
+    .panel:nth-child(1) { animation-delay: 0.2s; }
+    .panel:nth-child(2) { animation-delay: 0.4s; transform: translateY(30px) rotate(0.3deg); }
+    .panel:nth-child(3) { animation-delay: 0.6s; }
+    .panel:nth-child(4) { animation-delay: 0.8s; transform: translateY(30px) rotate(-0.2deg); }
+
+    @keyframes panelIn {
+      to { opacity: 1; transform: translateY(0) rotate(0); }
+    }
+
+    /* Panel image area */
+    .panel-image {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: linear-gradient(135deg, #0a0a15, #1a1a2e, #0a0a15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 40%, rgba(226,54,54,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 60%, rgba(26,58,92,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .panel-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .placeholder {
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .panel-num {
+      font-family: 'Bangers', cursive;
+      font-size: 2.5rem;
+      color: var(--yellow);
+      opacity: 0.3;
+      letter-spacing: 2px;
+    }
+
+    .panel-desc {
+      font-size: 0.9rem;
+      color: var(--gray);
+      margin-top: 0.5rem;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
+
+    /* Narration box */
+    .narration {
+      padding: 0.75rem 1.25rem;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 700;
+      font-style: italic;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      border-bottom: 2px solid var(--yellow-dim);
+      position: relative;
+    }
+
+    .narration::before {
+      content: '';
+      position: absolute;
+      top: -8px; left: 20px;
+      width: 16px; height: 16px;
+      background: var(--yellow);
+      transform: rotate(45deg);
+    }
+
+    /* Dialogue */
+    .dialogue-block {
+      padding: 0.75rem 1.25rem;
+    }
+
+    .d-line {
+      padding: 0.4rem 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .d-line:last-child { border-bottom: none; }
+
+    .d-speaker {
+      font-weight: 700;
+      font-family: 'Permanent Marker', cursive;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+    }
+
+    .d-speaker.shield { color: var(--teal); }
+    .d-speaker.phantom { color: var(--red); }
+    .d-speaker.byte { color: var(--yellow); }
+    .d-speaker.student { color: #85B7EB; }
+
+    /* Teaching callout */
+    .callout {
+      padding: 0.75rem 1.25rem;
+      background: rgba(226,54,54,0.1);
+      border-top: 2px solid var(--red);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #e0b0b0;
+    }
+
+    .callout strong {
+      color: var(--red);
+      font-family: 'Permanent Marker', cursive;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+
+    /* Midjourney prompt toggle */
+    .mj-section {
+      padding: 0 1.25rem 0.75rem;
+    }
+
+    .mj-toggle {
+      background: none;
+      border: none;
+      color: var(--teal-dim);
+      font-family: 'Comic Neue', cursive;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 4px 0;
+      transition: color 0.15s;
+    }
+
+    .mj-toggle:hover { color: var(--teal); }
+
+    .mj-code {
+      display: none;
+      margin-top: 0.5rem;
+      padding: 0.75rem 1rem;
+      background: rgba(0,0,0,0.4);
+      border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      line-height: 1.6;
+      color: var(--gray);
+      word-break: break-all;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .mj-code.open { display: block; }
+
+    /* ── CLOSING ──────────────────────────────── */
+    .closing {
+      max-width: 760px;
+      margin: 1rem auto 2rem;
+      padding: 0 1.5rem;
+    }
+
+    .closing-card {
+      position: relative;
+      padding: 2rem 2.5rem;
+      background: linear-gradient(135deg, var(--blue), var(--ink));
+      border: 2px solid var(--red);
+      border-radius: 16px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .closing-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 10px,
+        rgba(255,255,255,0.01) 10px,
+        rgba(255,255,255,0.01) 20px
+      );
+      pointer-events: none;
+    }
+
+    .closing-shield {
+      font-family: 'Bangers', cursive;
+      font-size: 1.6rem;
+      color: var(--yellow);
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+    }
+
+    .closing-teach {
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: 1.6;
+      max-width: 540px;
+      margin: 0 auto 1rem;
+    }
+
+    .closing-detail {
+      font-size: 0.95rem;
+      color: var(--gray);
+      line-height: 1.7;
+      max-width: 540px;
+      margin: 0 auto 1rem;
+    }
+
+    .closing-quote {
+      font-style: italic;
+      font-size: 1rem;
+      color: #c0bdb5;
+      line-height: 1.6;
+      max-width: 500px;
+      margin: 1.5rem auto 0;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Hashtags */
+    .hashtags {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .htag {
+      background: var(--red);
+      color: white;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      transition: transform 0.15s, background 0.15s;
+    }
+
+    .htag:hover {
+      transform: scale(1.05);
+      background: var(--red-dark);
+    }
+
+    /* ── FOOTER ───────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem 3rem;
+      border-top: 3px solid rgba(255,255,255,0.05);
+    }
+
+    .footer-brand {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 1.1rem;
+      color: var(--red);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-brand a {
+      color: var(--red);
+      text-decoration: none;
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* ── HALFTONE OVERLAY ─────────────────────── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 4px 4px;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ── RESPONSIVE ───────────────────────────── */
+    @media (min-width: 700px) {
+      .panels {
+        grid-template-columns: 1fr 1fr;
+      }
+      .panel:nth-child(3) {
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="brand">Lethally<span>Average</span> Presents</div>
+    <h1 class="comic-title">The Double Agent</h1>
+    <p class="issue-info">Issue #001 &middot; <strong>March 22, 2026</strong> &middot; Ransomware / Insider Threat</p>
+  </header>
+
+  <div class="hook">
+    <div class="hook-box">
+      What happens when the people hired to protect you... are the ones attacking you? When the incident responder IS the incident?
+    </div>
+  </div>
+
+  <div class="panels">
+
+    <!-- PANEL 1 -->
+    <div class="panel">
+      <div class="panel-image">
+        <div class="placeholder">
+          <div class="panel-num">01</div>
+          <p class="panel-desc">The consultant presents "Your Network Is Secure" — but his shadow reveals Phantom's true form.</p>
+        </div>
+      </div>
+      <div class="narration">"By day, he was Ryan Goldberg — incident response manager at one of the world's top cybersecurity firms. By night..."</div>
+      <div class="dialogue-block">
+        <div class="d-line"><span class="d-speaker phantom">Goldberg:</span> "Your network is fully hardened. No threat actor is getting through this."</div>
+        <div class="d-line"><span class="d-speaker" style="color:var(--gray);">CEO:</span> "That's what we pay you for."</div>
+      </div>
+      <div class="mj-section">
+        <button class="mj-toggle" onclick="this.nextElementSibling.classList.toggle('open')">/imagine prompt &darr;</button>
+        <div class="mj-code">/imagine Classic Marvel comic book style, dramatic irony panel, confident cybersecurity consultant in sharp suit presenting to corporate executives in sleek boardroom, pointing at screen showing green shield icon and text Your Network Is Secure, but his shadow cast on the wall behind him reveals a monstrous demonic silhouette with horns and claws and skull grin, executives oblivious to the shadow, bold ink outlines, split lighting half warm corporate half sinister dark red, halftone dot shading, dramatic medium shot --ar 1:1 --v 6 --style raw</div>
+      </div>
+    </div>
+
+    <!-- PANEL 2 -->
+    <div class="panel">
+      <div class="panel-image">
+        <div class="placeholder">
+          <div class="panel-num">02</div>
+          <p class="panel-desc">Night. The same man deploys BlackCat ransomware. $1.2M in Bitcoin. Phantom merges with his shadow.</p>
+        </div>
+      </div>
+      <div class="dialogue-block">
+        <div class="d-line"><span class="d-speaker phantom">Goldberg/Phantom:</span> "They pay me to find their vulnerabilities. Then they pay me again when I use them."</div>
+      </div>
+      <div class="callout"><strong>THE SCHEME: </strong>As a BlackCat/ALPHV affiliate, he paid 20% of ransoms to the ransomware operators in exchange for the encryption tools and extortion platform. One victim paid $1.2 million in Bitcoin.</div>
+      <div class="mj-section">
+        <button class="mj-toggle" onclick="this.nextElementSibling.classList.toggle('open')">/imagine prompt &darr;</button>
+        <div class="mj-code">/imagine Classic Marvel comic book style, dark noir panel, same consultant now in dark room illuminated only by computer screen showing ransomware deployment interface with BlackCat logo and Bitcoin wallet displaying 1.2M, his expression sinister and calculating, behind him a full shadowy villain figure merging with his shadow both becoming one entity, red and black digital corruption effects creeping across the desk, bold ink outlines, extreme contrast lighting face lit from screen only, halftone dot shading, tight close-up dramatic angle --ar 1:1 --v 6 --style raw</div>
+      </div>
+    </div>
+
+    <!-- PANEL 3 (full width) -->
+    <div class="panel">
+      <div class="panel-image">
+        <div class="placeholder">
+          <div class="panel-num">03</div>
+          <p class="panel-desc">Shield kicks down the door. The consultant's suit tears apart revealing Phantom underneath. Data trails connect him to every attack.</p>
+        </div>
+      </div>
+      <div class="narration">"Every fire he was called to put out... was one he'd set himself."</div>
+      <div class="dialogue-block">
+        <div class="d-line"><span class="d-speaker shield">Shield:</span> "Game over, Goldberg. We traced the BlackCat payments right back to your incident response reports. You were creating the fires and selling the extinguisher."</div>
+      </div>
+      <div class="callout"><strong>THE CATCH: </strong>Both suspects pleaded guilty to conspiracy to commit extortion. They face up to 20 years in federal prison. Sentencing: March 2026.</div>
+      <div class="mj-section">
+        <button class="mj-toggle" onclick="this.nextElementSibling.classList.toggle('open')">/imagine prompt &darr;</button>
+        <div class="mj-code">/imagine Classic Marvel comic book style, dramatic confrontation panel, cybersecurity hero kicking door open with FBI badge holders visible, consultant caught mid-transformation his business suit literally tearing apart revealing shadowy villain form underneath, holographic data trails connecting him to multiple company logos showing the attacks he committed, expression of shock and fear on his face, bold ink outlines, dynamic perspective from behind hero looking at the villain, halftone dot shading, vivid blue hero lighting versus red villain lighting clash, maximum dramatic tension --ar 1:1 --v 6 --style raw</div>
+      </div>
+    </div>
+
+    <!-- PANEL 4 -->
+    <div class="panel">
+      <div class="panel-image">
+        <div class="placeholder">
+          <div class="panel-num">04</div>
+          <p class="panel-desc">Shield teaches students the lesson. Byte projects the trust verification framework. Newspaper headline visible.</p>
+        </div>
+      </div>
+      <div class="dialogue-block">
+        <div class="d-line"><span class="d-speaker student">Student:</span> "So even the security people can't be trusted?"</div>
+        <div class="d-line"><span class="d-speaker shield">Shield:</span> "Trust, but verify. No one person should have all the keys. That's why real security has layers — background checks, separation of duties, independent audits. The same reason a bank teller can't also be the vault manager."</div>
+        <div class="d-line"><span class="d-speaker byte">Byte:</span> "He made $1.2 million... and now faces 20 years. Bad trade."</div>
+      </div>
+      <div class="callout"><strong>YOUR DEFENSE: </strong>(1) Background checks for privileged access roles. (2) Separation of duties — no single person holds all keys. (3) Independent audits of security teams. (4) Monitor your monitors.</div>
+      <div class="mj-section">
+        <button class="mj-toggle" onclick="this.nextElementSibling.classList.toggle('open')">/imagine prompt &darr;</button>
+        <div class="mj-code">/imagine Classic Marvel comic book style, warm teaching panel, cybersecurity hero in hoodie and glowing tactical vest speaking to diverse group of teenagers in urban setting, small floating teal holographic cube displaying trust verification framework with icons for background checks separation of duties independent audits, warm encouraging atmosphere, newspaper headline visible showing arrested consultant, bold ink outlines, halftone dot shading, warm golden lighting, slightly low angle heroic perspective --ar 1:1 --v 6 --style raw</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="closing">
+    <div class="closing-card">
+      <div class="closing-shield">What you should know</div>
+      <p class="closing-teach">Trust but verify — even cybersecurity professionals can be threat actors. No single person should hold all the keys.</p>
+      <p class="closing-detail">Background checks, separation of duties, and independent audits exist because real security is built on systems, not people. The same person who responds to your incidents should never have unchecked access to deploy changes in your environment.</p>
+      <p class="closing-quote">"The wolf doesn't always come dressed as a wolf. Sometimes it comes in a suit with a security badge. Real protection means trusting the system, not just the person."</p>
+      <div class="hashtags">
+        <span class="htag">#CyberComic</span>
+        <span class="htag">#TrustButVerify</span>
+        <span class="htag">#InsiderThreat</span>
+        <span class="htag">#LethallyAverage</span>
+        <span class="htag">#BronxCyber</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-brand"><a href="https://lethallyaverage.com">LethallyAverage</a></div>
+    <p>Free cybersecurity education for the Bronx and beyond.</p>
+    <p style="margin-top: 0.5rem;">&copy; 2026 LethallyAverage &middot; Issue #001</p>
+  </footer>
+
+</body>
+</html>

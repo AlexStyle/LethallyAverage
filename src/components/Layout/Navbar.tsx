@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
@@ -6,10 +6,12 @@ import { Menu, X } from 'lucide-react';
 const navLinks = [
   { label: 'Home', to: '/' },
   { label: 'Security', to: '/security/home-basics' },
+  { label: 'Weekly Stories', to: '/weekly-stories' },
   { label: 'Checklist', to: '/security/checklist' },
   { label: 'About', to: '/about' },
   { label: 'Community', to: '/community' },
   { label: 'Career Paths', to: '/career-paths' },
+  { label: 'Study Guide', to: '/study-guide' },
 ];
 
 const Navbar = () => {
