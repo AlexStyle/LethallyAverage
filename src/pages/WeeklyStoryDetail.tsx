@@ -126,6 +126,27 @@ const WeeklyStoryDetail = () => {
         ))}
       </div>
 
+      {/* EPILOGUE — THE REAL ENDING */}
+      {story.epilogue && (
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.6 }}
+          className="comic-epilogue"
+        >
+          <span className="comic-epilogue-tag">{story.epilogue.headline}</span>
+          <p className="comic-epilogue-text">{story.epilogue.text}</p>
+          {story.epilogue.outcomes && story.epilogue.outcomes.length > 0 && (
+            <ul className="comic-epilogue-outcomes">
+              {story.epilogue.outcomes.map((outcome, i) => (
+                <li key={i}>{outcome}</li>
+              ))}
+            </ul>
+          )}
+        </motion.div>
+      )}
+
       {/* CLOSING CARD */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -139,6 +160,11 @@ const WeeklyStoryDetail = () => {
           <p className="comic-closing-teach">{story.lesson}</p>
           <p className="comic-closing-detail">{story.lessonDetail}</p>
           <p className="comic-closing-quote">"{story.closingQuote}"</p>
+          {story.relatedLink && (
+            <Link to={story.relatedLink.to} className="comic-related">
+              {story.relatedLink.label} &rarr;
+            </Link>
+          )}
           <div className="comic-hashtags">
             {story.tags.map((tag) => (
               <span key={tag} className="comic-htag">#{tag}</span>
@@ -153,9 +179,28 @@ const WeeklyStoryDetail = () => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="max-w-[760px] mx-auto px-6 mb-8 text-center"
+        className="max-w-[760px] mx-auto px-6 mb-8"
       >
-        <p className="font-body text-xs text-la-muted">Based on: {story.incidentSource}</p>
+        <div className="comic-sources">
+          <p className="comic-sources-label">Based on a real case</p>
+          <p className="comic-sources-summary">{story.incidentSource}</p>
+          {story.sources && story.sources.length > 0 && (
+            <ul className="comic-sources-list">
+              {story.sources.map((source) => (
+                <li key={source.url}>
+                  <a
+                    href={source.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="comic-source-link"
+                  >
+                    {source.label} &rarr;
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </motion.div>
 
       {/* Back to stories */}
