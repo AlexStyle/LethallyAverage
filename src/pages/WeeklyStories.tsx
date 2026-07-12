@@ -58,7 +58,7 @@ const WeeklyStories = () => {
               className="group block border border-la-gray hover:border-la-red/60 transition-all duration-300 bg-la-gray/30 hover:bg-la-gray/50"
             >
               {/* Thumbnail — first panel */}
-              <div className="relative overflow-hidden aspect-[16/9]">
+              <div className="relative overflow-hidden aspect-square">
                 <img
                   src={story.panels[0].image}
                   alt={story.panels[0].altText}
