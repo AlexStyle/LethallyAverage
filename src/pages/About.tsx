@@ -9,13 +9,6 @@ const fadeUp = {
   transition: { duration: 0.5, ease: 'easeOut' as const },
 };
 
-const staggerIn = {
-  initial: { opacity: 0, x: -40 },
-  whileInView: { opacity: 1, x: 0 },
-  viewport: { once: true, margin: '-50px' },
-  transition: { duration: 0.6, ease: 'easeOut' as const },
-};
-
 const pulseGlow = {
   initial: { opacity: 0, scale: 0.95 },
   whileInView: { opacity: 1, scale: 1 },
@@ -49,40 +42,6 @@ const About = () => {
           Why this exists. Who it's for. No fluff.
         </motion.p>
       </div>
-
-      {/* ORIGIN */}
-      <motion.div {...staggerIn}>
-        <h2 className="font-display text-3xl text-la-red mb-2">ORIGIN</h2>
-        <p className="font-accent text-sm text-la-gold mb-6 uppercase tracking-wider">
-          Bronx Born. Philly Trained. Texas Fortified.
-        </p>
-        <div className="font-body text-sm text-la-muted leading-relaxed space-y-4 max-w-3xl">
-          <p>
-            I grew up in <span className="text-la-white font-semibold">the Bronx</span>,
-            90's kid. Before the digital boom era, we learned from being{' '}
-            <motion.span
-              className="text-la-white font-bold"
-              whileHover={{ color: '#E8001D', transition: { duration: 0.2 } }}
-            >
-              HANDS ON
-            </motion.span>{' '}
-            — back when we threw hands, made up and became{' '}
-            <motion.span
-              className="text-la-white font-bold"
-              whileHover={{ color: '#F5C518', transition: { duration: 0.2 } }}
-            >
-              BROTHERS
-            </motion.span>
-            . Life was rough but we learned to make due with what we had.
-          </p>
-          <p>
-            We also weren't oblivious to crime — and that's a byproduct of life.
-            What we can do is{' '}
-            <span className="text-la-white">show up and make a difference</span>{' '}
-            with the tools we have available, and that's where this idea was born.
-          </p>
-        </div>
-      </motion.div>
 
       {/* LA Mission Callout */}
       <motion.div
@@ -166,64 +125,6 @@ const About = () => {
             <span className="text-la-white">Real skills. Real people. No cost.</span>{' '}
             2-hour sessions in the Bronx. No prerequisites. No degrees needed.
             Just show up and learn something that matters.
-          </p>
-        </div>
-      </motion.div>
-
-      <Divider />
-
-      {/* THE PASSION, THE HEAT, THE FIRE */}
-      <motion.div {...staggerIn}>
-        <motion.h2
-          className="font-display text-3xl mb-2"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="text-la-red">THE PASSION</span>
-          <span className="text-la-muted">, </span>
-          <span className="text-la-gold">THE HEAT</span>
-          <span className="text-la-muted">, </span>
-          <motion.span
-            className="text-la-red"
-            animate={{
-              textShadow: [
-                '0 0 4px rgba(232, 0, 29, 0.3)',
-                '0 0 12px rgba(232, 0, 29, 0.6)',
-                '0 0 4px rgba(232, 0, 29, 0.3)',
-              ],
-            }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            THE FIRE.
-          </motion.span>
-        </motion.h2>
-        <div className="font-body text-sm text-la-muted leading-relaxed space-y-4 max-w-3xl">
-          <p>
-            Before all this, there was a{' '}
-            <motion.span
-              className="text-la-gold font-bold"
-              whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-              style={{ display: 'inline-block' }}
-            >
-              BBQ FEVER
-            </motion.span>
-            . When I got to Texas it's like a spirit took over me and I felt the
-            need to smoke every meat under the sun and it eventually lead to a
-            creation named after my father.{' '}
-            <span className="text-la-white font-semibold">BrisketBowls</span>{' '}
-            started with food, community, and honoring the people who raised us.
-          </p>
-          <p>
-            <span className="text-la-white">That spirit hasn't changed</span>{' '}
-            and it's what grounded me in Tech.{' '}
-            <motion.span
-              className="text-la-gold italic"
-              whileHover={{ color: '#F0F0F0', transition: { duration: 0.2 } }}
-            >
-              You don't have to follow the yellow brick road to get to your goals.
-            </motion.span>
           </p>
         </div>
       </motion.div>
