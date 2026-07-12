@@ -1,12 +1,32 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Wifi, Cpu, Building2 } from "lucide-react";
+import { ArrowRight, Wifi, Cpu, Building2, ShieldAlert, Eye, LifeBuoy, Scale } from "lucide-react";
 
 const cards = [
   {
     title: "Secure your WiFi in 10 minutes",
     to: "/security/home-basics",
     Icon: Wifi,
+  },
+  {
+    title: "Every scam coming for you, decoded",
+    to: "/security/scams",
+    Icon: ShieldAlert,
+  },
+  {
+    title: "Your feed is snitching on you",
+    to: "/security/social-media",
+    Icon: Eye,
+  },
+  {
+    title: "Got hacked? The first-hour playbook",
+    to: "/security/when-it-happens",
+    Icon: LifeBuoy,
+  },
+  {
+    title: "Don't catch a case — know the line",
+    to: "/security/stay-legal",
+    Icon: Scale,
   },
   {
     title: "The IoT device you forgot about",

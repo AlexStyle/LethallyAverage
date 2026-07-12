@@ -3,6 +3,7 @@ import AccordionSection from '../components/Security/AccordionSection';
 import TipCard from '../components/Security/TipCard';
 import WarningBanner from '../components/Security/WarningBanner';
 import StepList from '../components/Security/StepList';
+import SecurityNav from '../components/Security/SecurityNav';
 import GlitchText from '../components/UI/GlitchText';
 
 const MultiFamily = () => {
@@ -11,9 +12,10 @@ const MultiFamily = () => {
       <GlitchText as="h1" className="text-5xl md:text-6xl text-la-white mb-3">
         MULTI-FAMILY HOME GUIDE
       </GlitchText>
-      <p className="font-body text-lg text-la-muted mb-10">
+      <p className="font-body text-lg text-la-muted mb-6">
         Nobody covers this for regular people.
       </p>
+      <SecurityNav />
 
       {/* SECTION A: SHARED INFRASTRUCTURE RISKS */}
       <AccordionSection title="SHARED INFRASTRUCTURE RISKS" badge="critical" defaultOpen>

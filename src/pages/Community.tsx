@@ -336,7 +336,7 @@ const Community = () => {
           <div className="mb-8">
             <div className="flex items-center gap-2 mb-4">
               <h4 className="font-display text-lg text-la-white">PREP CHECKLIST</h4>
-              <Badge variant="important" />
+              <Badge type="important" />
             </div>
             <p className="font-body text-xs text-la-muted mb-4">
               Complete these before your Saturday session. Each one takes 5-15 minutes.

@@ -3,6 +3,7 @@ import AccordionSection from '../components/Security/AccordionSection';
 import TipCard from '../components/Security/TipCard';
 import WarningBanner from '../components/Security/WarningBanner';
 import StepList from '../components/Security/StepList';
+import SecurityNav from '../components/Security/SecurityNav';
 import GlitchText from '../components/UI/GlitchText';
 
 const IoTSecurity = () => {
@@ -11,9 +12,10 @@ const IoTSecurity = () => {
       <GlitchText as="h1" className="text-5xl md:text-6xl text-la-white mb-3">
         IOT SECURITY GUIDE
       </GlitchText>
-      <p className="font-body text-lg text-la-muted mb-10">
+      <p className="font-body text-lg text-la-muted mb-6">
         Most dangerous and least covered section for regular households.
       </p>
+      <SecurityNav />
 
       {/* SECTION A: THE IOT THREAT MAP */}
       <AccordionSection title="THE IOT THREAT MAP (2026)" badge="critical" defaultOpen>

@@ -1,0 +1,12 @@
+# Lethally Average - Security Contact
+# If you found a vulnerability in this site, thank you. Here's how to tell us.
+# Report privately, give us reasonable time to fix it, and don't access data
+# that isn't yours. Good-faith reports are welcome and appreciated.
+
+Contact: mailto:security@lethallyaverage.com
+Contact: mailto:hello@lethallyaverage.com
+Preferred-Languages: en
+Expires: 2027-07-01T00:00:00.000Z
+
+# Not running a paid bug bounty, but we'll credit good-faith finders who want it.
+# Learn what responsible disclosure means: https://lethallyaverage.com/security/stay-legal

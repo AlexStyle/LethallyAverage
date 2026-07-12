@@ -1,8 +1,10 @@
+import { Link } from 'react-router-dom';
 import PageWrapper from '../components/Layout/PageWrapper';
 import AccordionSection from '../components/Security/AccordionSection';
 import TipCard from '../components/Security/TipCard';
 import WarningBanner from '../components/Security/WarningBanner';
 import StepList from '../components/Security/StepList';
+import SecurityNav from '../components/Security/SecurityNav';
 import GlitchText from '../components/UI/GlitchText';
 
 const HomeBasics = () => {
@@ -11,11 +13,12 @@ const HomeBasics = () => {
       <GlitchText as="h1" className="text-5xl md:text-6xl text-la-white mb-4">
         HOME SECURITY 101
       </GlitchText>
-      <p className="font-body text-sm text-la-muted mb-10 max-w-2xl">
+      <p className="font-body text-sm text-la-muted mb-6 max-w-2xl">
         After this, you'll know how to lock down your home network, protect your
         devices, and spot scams before they get anywhere near you. No tech degree
         needed — just follow the steps.
       </p>
+      <SecurityNav />
 
       {/* SECTION A: ROUTER */}
       <AccordionSection title="YOUR ROUTER IS THE FRONT DOOR" badge="critical" defaultOpen>
@@ -52,7 +55,7 @@ const HomeBasics = () => {
             <StepList steps={[
               'Connect to your WiFi on any device (phone, laptop, whatever).',
               'Open a browser and type 192.168.1.1 in the address bar. If that doesn\'t work, try 192.168.0.1 — one of these works for most routers.',
-              'If neither works, on Windows open Command Prompt and type "ipconfig" — look for "Default Gateway." On Mac, open Terminal and type "ip route." That number is your router\'s address.',
+              'If neither works, on Windows open Command Prompt and type "ipconfig" — look for "Default Gateway." On Mac, open Terminal and type "netstat -nr | grep default" — the number next to "default" is your router\'s address.',
               'Log in with the username and password on the sticker on the bottom of your router. If you never changed them, that\'s exactly what we\'re fixing.',
               'Once you\'re in, change the admin password first thing. Make it long and unique — this is the key to your digital house.',
             ]} />
@@ -296,6 +299,31 @@ const HomeBasics = () => {
             </p>
           </TipCard>
 
+          <TipCard title="Passkeys: The Password Upgrade You Should Actually Use" badge="important">
+            <p className="mb-2">
+              <span className="text-la-white">Passkeys</span> are the newest way to log in, and
+              they fix the biggest weakness in security: you. A passkey replaces your password
+              with your phone's face/fingerprint unlock. There's no password to type, so there's
+              nothing to steal, guess, or phish. Even if you land on a perfect fake login page, a
+              passkey simply won't work there — it's cryptographically tied to the real site.
+            </p>
+            <p className="mb-2">
+              Translation: passkeys are both <span className="text-la-white">easier</span> (no
+              typing, no remembering) AND <span className="text-la-white">stronger</span> than a
+              password plus a text code. That's rare.
+            </p>
+            <ul className="list-disc list-inside space-y-1 mb-2">
+              <li><span className="text-la-white">Google:</span> myaccount.google.com → Security → Passkeys → create one.</li>
+              <li><span className="text-la-white">Apple:</span> passkeys are built into your Apple Account and sync through iCloud Keychain automatically.</li>
+              <li><span className="text-la-white">Microsoft, PayPal, Amazon, and more</span> now support them — look for "passkey" or "sign in without a password" in security settings.</li>
+            </ul>
+            <p>
+              Your password manager (Bitwarden, Proton Pass) can also store passkeys so they work
+              across all your devices. Add one to your email first — it's the account everything
+              else depends on.
+            </p>
+          </TipCard>
+
           <TipCard title="SIM Swap Attacks: Protect Your Phone Number" badge="critical">
             <p className="mb-2">
               A <span className="text-la-white">SIM swap</span> is when someone calls your phone
@@ -312,6 +340,21 @@ const HomeBasics = () => {
               <li><span className="text-la-white">Verizon:</span> Enable Number Lock and set an account PIN</li>
               <li><span className="text-la-white">Metro/Cricket/Boost:</span> Call customer service and ask to add a PIN or port freeze</li>
             </ul>
+          </TipCard>
+
+          <TipCard title="Selling or Trading In a Device? Wipe It Right" badge="important">
+            <p className="mb-2">
+              A "factory reset" alone isn't enough if your accounts are still linked — you can
+              accidentally lock the buyer out (activation lock), or leave your logins reachable.
+              Before any phone, laptop, console, or tablet leaves your hands:
+            </p>
+            <StepList steps={[
+              'Sign OUT of your accounts first — Apple ID, Google, Samsung, Microsoft, etc. On iPhone: Settings > [your name] > Sign Out (this turns off Activation Lock so the buyer can actually use it). Android: remove your Google account before resetting.',
+              'Sign out of everything else: banking, email, social, streaming, password manager.',
+              'THEN do the factory reset (Settings > General/System > Reset > Erase All Content).',
+              'For a laptop, also make sure disk encryption was ON while you used it (BitLocker/FileVault) — then a reset leaves nothing recoverable. Remove any linked accounts (Find My, device management) before wiping.',
+              'Pop out and keep (or destroy) the SIM and any SD card. They don\'t get wiped by a reset.',
+            ]} />
           </TipCard>
         </div>
       </AccordionSection>
@@ -430,6 +473,53 @@ const HomeBasics = () => {
             <p>
               These turn a one-kick door into a 10+ kick door. Most burglars give up after 2-3
               attempts. This costs less than a Ring camera and works better.
+            </p>
+          </TipCard>
+
+          <TipCard title="Windows & Sliding Doors: The Second Way In" badge="important">
+            <p className="mb-2">
+              After the front door, windows and sliding glass doors are the most common entry
+              point — and ground-floor apartments get hit most. The good news: the fixes are
+              cheap, renter-friendly, and need no tools.
+            </p>
+            <ul className="list-disc list-inside space-y-1 mb-2">
+              <li><span className="text-la-white">Sliding doors:</span> drop a cut-to-length wooden dowel or a security bar in the track. $10, and it stops the door from opening even if the flimsy latch is popped. Also add anti-lift screws or a track lock so it can't be jimmied off its rail.</li>
+              <li><span className="text-la-white">Windows:</span> inexpensive pin locks or sash locks stop a window from sliding open more than a few inches. Ground-floor and fire-escape-adjacent windows first.</li>
+              <li><span className="text-la-white">Renters:</span> all of the above are removable and leave no damage — no landlord permission needed. A door/window alarm (the $3 stick-on kind that shrieks when opened) is the cheapest deterrent that exists.</li>
+            </ul>
+            <p>
+              Burglars want fast and quiet. Anything that makes entry loud or slow sends them to
+              an easier target.
+            </p>
+          </TipCard>
+
+          <TipCard title="The Lived-In Look (and Spare Keys)" badge="important">
+            <p className="mb-2">
+              Most break-ins happen when nobody's home — so the goal is to never look empty:
+            </p>
+            <ul className="list-disc list-inside space-y-1 mb-2">
+              <li>Put a lamp or two on a cheap smart plug or timer so lights come on in the evening even when you're out (or away for the weekend).</li>
+              <li>Don't announce trips in real time online — that's the physical-security half of our <Link to="/security/social-media" className="text-la-red hover:text-la-gold underline underline-offset-2">oversharing warning</Link>. Post the vacation pics when you're back.</li>
+              <li>Get a neighbor to grab mail/packages when you're away; a pile of deliveries screams "nobody home."</li>
+              <li><span className="text-la-white">Never hide a spare key outside.</span> Burglars check under the mat, the planter, and the fake rock first — those hiding spots are famous for a reason. Leave a spare with a trusted neighbor or family member instead, or use a keypad lock with a backup code.</li>
+            </ul>
+          </TipCard>
+
+          <TipCard title="A Small Fireproof Safe for the Documents That Matter">
+            <p className="mb-2">
+              Your passport, Social Security card, birth certificate, and any cash backup
+              shouldn't sit in a desk drawer. A small fire-rated document safe (around $30-50)
+              protects them from both theft and fire — and keeping your SSN card locked up is a
+              real defense against the identity theft covered on our{' '}
+              <Link to="/security/when-it-happens" className="text-la-red hover:text-la-gold underline underline-offset-2">
+                When It Hits the Fan
+              </Link>{' '}
+              page.
+            </p>
+            <p>
+              Bolt-down models are better (a small safe that isn't anchored just gets carried
+              off), but even a basic one beats a drawer. Store recovery codes and a written
+              master-password hint here too.
             </p>
           </TipCard>
 

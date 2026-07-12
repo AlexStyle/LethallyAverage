@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PageWrapper from '../components/Layout/PageWrapper';
 import GlitchText from '../components/UI/GlitchText';
+import SecurityNav from '../components/Security/SecurityNav';
 
 const STORAGE_KEY = 'la-checklist';
 
@@ -78,6 +79,16 @@ const tiers: TierData[] = [
         label: 'Phone screen lock active',
         howTo: 'Settings > Security > Screen Lock. Use a 6-digit PIN minimum, or biometrics (fingerprint/face). Set auto-lock to 30 seconds or 1 minute. A lost phone with no lock is a skeleton key to your entire life.',
       },
+      {
+        id: 't1-stolen-device',
+        label: 'Stolen Device Protection / Theft Lock enabled',
+        howTo: 'iPhone: Settings > Face ID & Passcode > Stolen Device Protection > ON. Android: Settings > Google > All services > Theft protection > turn on Theft Detection Lock + Offline Device Lock. This stops a thief who watched you type your passcode from changing your Apple/Google password and locking you out. Free, and it counters the #1 modern phone-theft attack.',
+      },
+      {
+        id: 't1-phone-backup',
+        label: 'Phone cloud backup turned on',
+        howTo: 'iPhone: Settings > [your name] > iCloud > iCloud Backup > ON. Android: Settings > Google > Backup > ON. A cracked screen or stolen phone destroys more people\'s photos and data than hackers ever will. Set it once, never think about it again.',
+      },
     ],
   },
   {
@@ -137,6 +148,16 @@ const tiers: TierData[] = [
         label: 'Emergency contacts know your security PIN',
         howTo: 'Pick 1-2 people you trust completely. Share your password manager emergency access (Bitwarden has this built in) or write down critical recovery codes and store them in a sealed envelope. If something happens to you, someone needs to be able to access your accounts.',
       },
+      {
+        id: 't2-passkey-email',
+        label: 'Passkey added to your main account',
+        howTo: 'Passkeys replace passwords with your face/fingerprint and CANNOT be phished — there\'s no password to steal or type into a fake site. Add one to your Google (myaccount.google.com > Security > Passkeys), Apple, or Microsoft account. Easier than a password AND stronger. This is the 2026 upgrade over password + text codes.',
+      },
+      {
+        id: 't2-credit-freeze',
+        label: 'Credit frozen at all 3 bureaus',
+        howTo: 'Free by law, ~15 minutes, doesn\'t affect your score or existing cards. Freeze at Equifax (equifax.com/personal/credit-report-services), Experian (experian.com/freeze), and TransUnion (transunion.com/credit-freeze). Stops anyone from opening credit in your name. If you just turned 18 with a blank credit file, this is the highest-value move you can make — do it before someone else uses your identity.',
+      },
     ],
   },
   {
@@ -194,7 +215,17 @@ const tiers: TierData[] = [
       {
         id: 't3-shodan',
         label: 'Shodan.io search of your IP completed',
-        howTo: 'Go to shodan.io. Search your public IP address (find it at whatismyip.com). Shodan shows what services are visible from the internet on your network. If you see open ports you don\'t recognize, something is exposed that shouldn\'t be. Fix it or call your ISP.',
+        howTo: 'Go to shodan.io. Search your public IP address (find it at whatismyip.com). Shodan shows what services are visible from the internet on your network. If you see open ports you don\'t recognize, something is exposed that shouldn\'t be. Fix it or call your ISP. (Search only your OWN IP — logging into anyone else\'s exposed device is a crime. See the Stay Legal page.)',
+      },
+      {
+        id: 't3-computer-backup',
+        label: 'Computer backup running (3-2-1)',
+        howTo: 'Windows: plug in an external drive (~$50 for 1TB) > Settings > search "Backup" > File History > ON. Mac: same drive > System Settings > Time Machine > ON. Aim for 3 copies of anything that matters, on 2 kinds of storage, with 1 offsite (cloud). This is the ONLY defense that makes ransomware irrelevant — and once a year, actually test-restore one file.',
+      },
+      {
+        id: 't3-account-audit',
+        label: 'Account access + recovery options audited',
+        howTo: 'For your key accounts (email, socials, bank): check "logged-in devices" and sign out anything you don\'t recognize. Check recovery email/phone — remove any that belong to an ex or old number (they\'re a master key back in). Revoke connected third-party apps you no longer use. Do this after any breakup or lost device.',
       },
     ],
   },
@@ -405,10 +436,11 @@ const Checklist = () => {
         <GlitchText as="h1" className="text-5xl sm:text-6xl text-la-white mb-4">
           MASTER CHECKLIST
         </GlitchText>
-        <p className="font-body text-la-muted text-sm max-w-2xl">
-          30 things standing between you and getting owned. Check them off. Your
-          progress saves automatically.
+        <p className="font-body text-la-muted text-sm max-w-2xl mb-8">
+          {totalItems} things standing between you and getting owned. Check them
+          off. Your progress saves automatically.
         </p>
+        <SecurityNav />
       </div>
 
       {/* Overall progress */}

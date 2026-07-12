@@ -3,6 +3,7 @@ import AccordionSection from '../components/Security/AccordionSection';
 import TipCard from '../components/Security/TipCard';
 import WarningBanner from '../components/Security/WarningBanner';
 import StepList from '../components/Security/StepList';
+import SecurityNav from '../components/Security/SecurityNav';
 import GlitchText from '../components/UI/GlitchText';
 
 const Threats2026 = () => {
@@ -11,11 +12,12 @@ const Threats2026 = () => {
       <GlitchText as="h1" className="text-5xl md:text-6xl text-la-white mb-4">
         WHAT'S NEW & DANGEROUS IN 2026
       </GlitchText>
-      <p className="font-body text-sm text-la-muted mb-10 max-w-2xl">
+      <p className="font-body text-sm text-la-muted mb-6 max-w-2xl">
         The threats change every year. This page covers what's actively being
         used against regular people right now — not hypotheticals, not sci-fi.
         Real scams, real attacks, real defenses.
       </p>
+      <SecurityNav />
 
       {/* 1. AI-POWERED PHISHING */}
       <AccordionSection title="AI-POWERED PHISHING" badge="critical" defaultOpen>

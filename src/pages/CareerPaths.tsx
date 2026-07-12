@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import PageWrapper from '../components/Layout/PageWrapper';
 import GlitchText from '../components/UI/GlitchText';
 import Badge from '../components/UI/Badge';
@@ -33,7 +34,7 @@ const PathCard = ({ title, timeline, salary, description, steps, certs, free }: 
     >
       <div className="flex items-start justify-between mb-2">
         <h3 className="font-display text-xl text-la-white">{title}</h3>
-        {free && <Badge variant="free" />}
+        {free && <Badge type="free" />}
       </div>
       <div className="flex gap-4 mb-3">
         <span className="font-accent text-[10px] text-la-gold uppercase tracking-widest">
@@ -119,6 +120,18 @@ const CareerPaths = () => {
         This page is that strategy.
       </WarningBanner>
 
+      <WarningBanner>
+        <span className="font-display text-sm">HEADS UP — THE JOB HUNT HAS PREDATORS:</span>{' '}
+        The moment you start applying, fake "recruiters" will slide in with too-good offers,
+        interviews held entirely over text/Telegram, and checks to "buy your equipment." Real
+        jobs pay YOU — you never pay to get hired, and you never deposit a check and send part
+        back. Full breakdown on our{' '}
+        <Link to="/security/scams" className="text-la-gold hover:text-la-red underline underline-offset-2">
+          Scam Playbook
+        </Link>
+        . Chase the paths below, but keep your guard up.
+      </WarningBanner>
+
       <div className="h-8" />
 
       {/* Stats */}
@@ -147,7 +160,7 @@ const CareerPaths = () => {
       {/* FREE PROGRAMS — THE FAST TRACK */}
       <AccordionSection
         title="FREE PROGRAMS THAT ACTUALLY PLACE PEOPLE"
-        badge={<Badge variant="critical" />}
+        badge="critical"
         defaultOpen
       >
         <div className="space-y-4">
@@ -161,7 +174,7 @@ const CareerPaths = () => {
             <div className="p-4 bg-la-black rounded-lg border border-la-red/30">
               <div className="flex items-center gap-2 mb-2">
                 <h4 className="font-display text-lg text-la-white">YEAR UP UNITED</h4>
-                <Badge variant="free" />
+                <Badge type="free" />
               </div>
               <ul className="font-body text-xs text-la-muted space-y-1">
                 <li>• Ages 18-29, tuition-free, 20+ US cities</li>
@@ -176,7 +189,7 @@ const CareerPaths = () => {
             <div className="p-4 bg-la-black rounded-lg border border-la-gold/30">
               <div className="flex items-center gap-2 mb-2">
                 <h4 className="font-display text-lg text-la-white">PER SCHOLAS</h4>
-                <Badge variant="free" />
+                <Badge type="free" />
               </div>
               <ul className="font-body text-xs text-la-muted space-y-1">
                 <li>• Tuition-free, 30+ cities + remote options</li>
@@ -191,7 +204,7 @@ const CareerPaths = () => {
             <div className="p-4 bg-la-black rounded-lg border border-la-gold/30">
               <div className="flex items-center gap-2 mb-2">
                 <h4 className="font-display text-lg text-la-white">NPOWER</h4>
-                <Badge variant="free" />
+                <Badge type="free" />
               </div>
               <ul className="font-body text-xs text-la-muted space-y-1">
                 <li>• Completely free, 10 states across the US</li>
@@ -206,7 +219,7 @@ const CareerPaths = () => {
             <div className="p-4 bg-la-black rounded-lg border border-la-gold/30">
               <div className="flex items-center gap-2 mb-2">
                 <h4 className="font-display text-lg text-la-white">LAUNCHCODE</h4>
-                <Badge variant="free" />
+                <Badge type="free" />
               </div>
               <ul className="font-body text-xs text-la-muted space-y-1">
                 <li>• Free tech training + paid apprenticeships</li>
@@ -220,7 +233,7 @@ const CareerPaths = () => {
             <div className="p-4 bg-la-black rounded-lg border border-la-gold/30">
               <div className="flex items-center gap-2 mb-2">
                 <h4 className="font-display text-lg text-la-white">CODE PLATOON</h4>
-                <Badge variant="free" />
+                <Badge type="free" />
               </div>
               <ul className="font-body text-xs text-la-muted space-y-1">
                 <li>• Free for veterans and military spouses</li>
@@ -237,7 +250,7 @@ const CareerPaths = () => {
       {/* CORPORATE APPRENTICESHIPS */}
       <AccordionSection
         title="CORPORATE APPRENTICESHIPS — GET PAID TO LEARN"
-        badge={<Badge variant="important" />}
+        badge="important"
       >
         <div className="space-y-4">
           <p className="font-body text-sm text-la-muted">
@@ -328,6 +341,7 @@ const CareerPaths = () => {
               "Study for and pass CompTIA Security+",
               "Build a home security lab: install a firewall (pfSense, free), run Wireshark, practice",
               "Learn Python for automation — doesn't need to be advanced, just functional",
+              "Practice ONLY on legal ground — picoCTF, TryHackMe, Hack The Box, your own lab. Never on systems you don't own. A computer-crime record ends a security career before it starts (see the Stay Legal page).",
               "Apply to SOC Analyst roles (Security Operations Center) — this is the entry point",
               "Specialize: Blue Team (defensive), Red Team (offensive), GRC (compliance), or Cloud Security",
             ]}
@@ -411,7 +425,7 @@ const CareerPaths = () => {
       {/* FREE LEARNING RESOURCES */}
       <AccordionSection
         title="FREE LEARNING RESOURCES — START TODAY"
-        badge={<Badge variant="free" />}
+        badge="free"
       >
         <div className="space-y-4">
           <div className="p-4 bg-la-black rounded-lg border border-la-gray">
@@ -477,10 +491,64 @@ const CareerPaths = () => {
         </div>
       </AccordionSection>
 
+      {/* CTF & COMMUNITY */}
+      <AccordionSection
+        title="GET REPS + GET CONNECTED (CTFs & COMMUNITY)"
+        badge="free"
+      >
+        <div className="space-y-4">
+          <p className="font-body text-sm text-la-muted">
+            Certs prove you studied. Hands-on reps prove you can actually do it — and showing up
+            in the community is where 70% of those referrals we keep mentioning actually happen.
+            All free, all legal, all beginner-friendly.
+          </p>
+
+          <div className="p-4 bg-la-black rounded-lg border border-la-red/30">
+            <h4 className="font-display text-lg text-la-white mb-2">CAPTURE THE FLAG (CTF) — HACKING AS A GAME</h4>
+            <ul className="font-body text-xs text-la-muted space-y-1">
+              <li>• <span className="text-la-white">picoCTF</span> — built by Carnegie Mellon FOR students and beginners. The best free starting point in existence. (picoctf.org)</li>
+              <li>• <span className="text-la-white">TryHackMe</span> — guided, hand-holding rooms from zero. Huge free tier. (tryhackme.com)</li>
+              <li>• <span className="text-la-white">Hack The Box</span> — more challenge; start with "Starting Point." (hackthebox.com)</li>
+              <li>• <span className="text-la-white">OverTheWire</span> — the "Bandit" wargame teaches Linux by playing. (overthewire.org)</li>
+              <li>• <span className="text-la-white">CTFtime</span> — calendar of team competitions worldwide. (ctftime.org)</li>
+            </ul>
+            <p className="font-body text-[11px] text-la-muted mt-2">
+              These teach the exact same skills a booter or a school-network "prank" would — except
+              here they build your resume instead of a criminal record. See the{' '}
+              <Link to="/security/stay-legal" className="text-la-red hover:text-la-gold underline underline-offset-2">Stay Legal</Link> page for why that line matters.
+            </p>
+          </div>
+
+          <div className="p-4 bg-la-black rounded-lg border border-la-gold/30">
+            <h4 className="font-display text-lg text-la-white mb-2">SHOW UP IN PERSON — WHERE JOBS ACTUALLY COME FROM</h4>
+            <ul className="font-body text-xs text-la-muted space-y-1">
+              <li>• <span className="text-la-white">BSides</span> — cheap/free local security conferences in most big cities (BSidesNYC, BSidesLV, etc.). Beginners welcome, badges cheap, people friendly.</li>
+              <li>• <span className="text-la-white">DEF CON Groups</span> — free monthly local meetups (find yours at defcongroups.org). No skill floor.</li>
+              <li>• <span className="text-la-white">OWASP chapters</span> — free web-security meetups worldwide, often with talks and food.</li>
+              <li>• <span className="text-la-white">2600 meetups</span> — first Friday of every month, hacker meetups in cities worldwide (including NYC).</li>
+            </ul>
+            <p className="font-body text-[11px] text-la-muted mt-2">
+              You don't need to know anything to attend. Say "I'm just starting out" — this community
+              respects hunger over pedigree. That's the whole point.
+            </p>
+          </div>
+
+          <div className="p-4 bg-la-black rounded-lg border border-la-gray">
+            <h4 className="font-display text-lg text-la-white mb-2">NYC / BRONX PIPELINES</h4>
+            <ul className="font-body text-xs text-la-muted space-y-1">
+              <li>• <span className="text-la-white">CUNY</span> — public, affordable, with real cybersecurity and IT programs across the boroughs (including in the Bronx). Financial aid covers a lot of it.</li>
+              <li>• <span className="text-la-white">NYC Tech Talent Pipeline & Cyber NYC</span> — city-backed training and job-placement programs built specifically to get New Yorkers into tech without a traditional degree.</li>
+              <li>• <span className="text-la-white">Per Scholas</span> has a Bronx campus (it literally started in the Bronx) — free, and already on our list above.</li>
+              <li>• <span className="text-la-white">Public libraries</span> — the NYPL gives you free access to the Google Career Certificates and tons of LinkedIn Learning courses with just your library card.</li>
+            </ul>
+          </div>
+        </div>
+      </AccordionSection>
+
       {/* WHAT AI CHANGED */}
       <AccordionSection
         title="WHAT AI CHANGED — AND WHAT IT DIDN'T"
-        badge={<Badge variant="warning" />}
+        badge="warning"
       >
         <div className="space-y-4">
           <p className="font-body text-sm text-la-muted">
@@ -531,7 +599,7 @@ const CareerPaths = () => {
       {/* BOOTCAMP WARNING */}
       <AccordionSection
         title="PAID BOOTCAMPS — THE TRUTH IN 2026"
-        badge={<Badge variant="warning" />}
+        badge="warning"
       >
         <div className="space-y-4">
           <WarningBanner>
