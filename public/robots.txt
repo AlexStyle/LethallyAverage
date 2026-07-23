@@ -1,0 +1,94 @@
+# Lethally Average — robots.txt
+#
+# Search engines: welcome. The whole point of this site is that people can
+# FIND it. Blocking Google would hide free security education from the kids
+# who need it.
+#
+# AI training crawlers: no thanks. Opted out below.
+#
+# ---------------------------------------------------------------------------
+# REAL TALK (this is a security site, so let's be honest about what this file
+# actually does): robots.txt is a REQUEST, not a wall. It's the honor system.
+# Well-behaved crawlers read it and comply. A scraper running curl, or a bot
+# that lies about its user-agent, ignores every line below and always will.
+#
+# Anything a browser can load, a person can copy. If you ever need to ACTUALLY
+# block bots, you need something that can refuse a request in real time —
+# a reverse proxy / CDN / WAF in front of the site (Cloudflare's free tier can
+# do this). A static host can only ask nicely. Now you know the difference.
+# ---------------------------------------------------------------------------
+
+# --- Search engines: come on in ---
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# --- AI training crawlers: opted out ---
+# Note: Google-Extended only controls AI training. It does NOT affect your
+# Google Search ranking or indexing. Same idea for Applebot-Extended.
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: omgilibot
+Disallow: /
+
+User-agent: omgili
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
+User-agent: YouBot
+Disallow: /
+
+User-agent: Timpibot
+Disallow: /
+
+# --- Everyone else: allowed ---
+User-agent: *
+Allow: /
